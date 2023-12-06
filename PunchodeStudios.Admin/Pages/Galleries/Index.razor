@@ -1,0 +1,44 @@
+﻿@page "/galleries/"
+<h3>Galleries</h3>
+
+<div class="m-2 d-flex justify-content-end">
+    <button @onclick="CreateGallery" class="btn btn-success">Add Gallery</button>
+</div>
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+    <div class="alert alert-danger">@Message</div>
+}
+
+@if(Galleries == null)
+{
+    <p>Loading Data...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Galleries)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <button @onclick=@(() => GalleryDetails(item.Id)) class="btn btn-info">Details</button>
+                        <button @onclick=@(() => GalleryEdit(item.Id)) class="btn btn-warning">Details</button>
+                        <button @onclick=@(() => GalleryDelete(item.Id)) class="btn btn-danger">Details</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

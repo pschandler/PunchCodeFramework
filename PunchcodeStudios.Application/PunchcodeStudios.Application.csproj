@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\Gallery\Queries\GetGalleriesByCategoryName\**" />
+    <Compile Remove="Features\Gallery\Queries\GetGalleriesByTypeName\**" />
+    <EmbeddedResource Remove="Features\Gallery\Queries\GetGalleriesByCategoryName\**" />
+    <EmbeddedResource Remove="Features\Gallery\Queries\GetGalleriesByTypeName\**" />
+    <None Remove="Features\Gallery\Queries\GetGalleriesByCategoryName\**" />
+    <None Remove="Features\Gallery\Queries\GetGalleriesByTypeName\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.8.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.1" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PunchcodeStudios.Domain\PunchcodeStudios.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
