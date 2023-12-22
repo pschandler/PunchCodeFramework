@@ -16,7 +16,6 @@ builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
 {
-    // hmmmmm
     options.AddPolicy("pcPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
 

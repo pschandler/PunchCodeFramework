@@ -1,8 +1,10 @@
 ﻿@page "/galleries/"
 <h3>Galleries</h3>
 
-<div class="m-2 d-flex justify-content-end">
-    <button @onclick="CreateGallery" class="btn btn-success">Add Gallery</button>
+<div class="row">
+    <div class="m-2 d-flex justify-content-end">
+        <button @onclick="AddGallery" class="btn btn-success">Add Gallery</button>
+    </div>
 </div>
 
 @if (string.IsNullOrEmpty(Message) == false)
@@ -10,35 +12,48 @@
     <div class="alert alert-danger">@Message</div>
 }
 
+<div class="d-flex row-cols-1">
 @if(Galleries == null)
 {
     <p>Loading Data...</p>
+}
+else if(Galleries.Count == 0)
+{
+    <p>No data to DISPLAY</p>
 }
 else
 {
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Updated</th>
+                <th>Num Types</th>
+                <th>Num Categories</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach(var item in Galleries)
+            @foreach (var item in Galleries)
             {
                 <tr>
-                    <td>@item.Id</td>
                     <td>@item.Name</td>
                     <td>@item.Description</td>
+                    <td>@item.DateUpdated</td>
+                    <td>@item.Types.Count</td>
+                    <td>@item.Categories.Count</td>
                     <td>
                         <button @onclick=@(() => GalleryDetails(item.Id)) class="btn btn-info">Details</button>
-                        <button @onclick=@(() => GalleryEdit(item.Id)) class="btn btn-warning">Details</button>
-                        <button @onclick=@(() => GalleryDelete(item.Id)) class="btn btn-danger">Details</button>
+                        <AuthorizeView Roles="System_Admin">
+                            <button @onclick=@(() => GalleryEdit(item.Id)) class="btn btn-warning">Edit</button>
+                            <button @onclick=@(() => GalleryDelete(item.Id)) class="btn btn-danger">Delete</button>
+                        </AuthorizeView>
+
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+</div>

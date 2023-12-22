@@ -1,0 +1,45 @@
+﻿
+<div class="card-container d-flex row">
+    <div class="left-column p-3 shadow col-md-4 d-flex flex-column">
+        <div class="heading d-flex flex-row justify-content-center">
+            <h2>@Heading</h2>
+        </div>
+        <div class="tagline d-flex flex-row justify-content-center">
+            @Tagline
+        </div>
+        <div class="return-link d-flex flex-row justify-content-center">
+            <input class="btn btn-link" onclick="@OnReturn" value="@ReturnText" />
+        </div>
+    </div>
+    <div class="right-column p-3 shadow col-md-8 d-flex flex-column">
+        <div class="form-content">
+            @ChildContent
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public string Heading { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Tagline { get; set; } = string.Empty;
+
+    [Parameter]
+    public string ReturnText { get; set; } = string.Empty;
+
+    [Parameter]
+    public string CancelText { get; set; } = "Clear";
+
+    [Parameter]
+    public string SubmitText { get; set; } = "Submit";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter] public EventCallback OnCancel { get; set; }
+    [Parameter] public EventCallback OnSubmit { get; set; }
+    [Parameter] public EventCallback OnReturn { get; set; }
+
+}

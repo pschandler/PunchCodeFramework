@@ -14,18 +14,6 @@ namespace PunchcodeStudios.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Gallery> builder)
         {
-            // seed data
-            //builder.HasData(
-            //    new Gallery
-            //    {
-            //        Id = Guid.NewGuid(),
-            //        Name = "Example Gallery",
-            //        Description = "Example Gallery Description",
-            //        DateCreated = DateTime.Now,
-            //        DateUpdated = DateTime.Now,
-            //    }
-            //);
-
             builder.Property(q => q.Name).IsRequired().HasMaxLength(100);
             builder.Property(q => q.Description).IsRequired().HasMaxLength(150);
         }

@@ -1,0 +1,31 @@
+﻿.card-container {
+    border:solid thin #888;
+    border-radius: 10px;
+    
+}
+.heading {
+
+}
+.tagline {
+
+}
+.left-column {
+    background-color: #222;
+    color: #FFF;
+    border-radius: 10px 0 0 10px;
+}
+
+.right-column {
+    background-color: #ccc;
+    color: #222;
+    border-radius: 0 10px 10px 0;
+}
+.return-link {
+
+}
+.form-content {
+
+}
+.button-content {
+
+}

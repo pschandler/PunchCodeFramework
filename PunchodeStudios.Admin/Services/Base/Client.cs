@@ -1,4 +1,4 @@
-﻿namespace PunchodeStudios.Admin.Services.Base
+﻿namespace PunchcodeStudios.Admin.Services.Base
 {
     public partial class Client : IClient
     {

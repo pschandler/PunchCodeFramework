@@ -1,0 +1,19 @@
+﻿.checkbox-label {
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.disclaimer {
+    font-size: .8em;
+    color: #ff0000;
+}
+
+::deep .rz-label {
+    display: block;
+    flex: 1;
+    color: #ff0000;
+}
+
+::deep .rz-login {
+    flex-direction: row;
+}

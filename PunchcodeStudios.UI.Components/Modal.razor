@@ -1,0 +1,21 @@
+﻿@if (Show)
+{
+    <div class="dialog-container">
+        <div class="dialog">
+            <div class="dialog-title">
+                <h2>@Title</h2>
+            </div>
+
+            <div class="dialog-body">
+                @ChildContent
+            </div>
+
+            <div class="dialog-buttons">
+                <button class="btn btn-secondary me-auto" @onclick="OnCancel">@CancelText</button>
+                <button class="btn btn-success ms-auto" @onclick="OnConfirm">@ConfirmText</button>
+            </div>
+
+        </div>
+    </div>
+}
+

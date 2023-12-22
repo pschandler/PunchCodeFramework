@@ -1,0 +1,27 @@
+﻿@using PunchcodeStudios.Admin.Contracts
+@using PunchcodeStudios.Admin.Models.Gallery
+@page "/gallery/add"
+
+<div class="col-md-8 p-5">
+    <PCS_FormCard Heading="Gallery Admin"
+                  Tagline="Add a gallery to the site"
+                  ReturnText="return to galleries"
+    >
+        <form method="post" @onsubmit="OnSubmit" style="max-width:500px;">
+            <div class="form-goup">
+                <label class="form-label">Name</label>
+                <InputText class="form-control mb-3" @bind-Value="Model.Name"/>
+            </div>
+            <div class="form-goup">
+                <label class="form-label">Description</label>
+                <InputText type="text" class="form-control mb-3" @bind-Value="Model.Description" />
+            </div>
+            <div class="button-content d-flex justify-content-between">
+                <div class="col-md-4"><input class="btn btn-danger form-control mb-3" onclick="OnCancel()" value="Clear" /></div>
+                <div class="col-md-4"><input type="submit" class="btn btn-primary form-control mb-3" onclick="OnSubmit()" value="Submit" /></div>
+            </div>
+        </form>
+    </PCS_FormCard>
+</div>
+
+

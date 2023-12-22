@@ -1,17 +1,59 @@
 ﻿@inherits LayoutComponentBase
+@using Blazored.Toast.Configuration;
+@using PunchcodeStudios.Admin.Pages
 
+<BlazoredToasts
+    Position = "ToastPosition.TopRight"
+    Timeout = "10"
+    IconType = "IconType.FontAwesome"
+    SuccessClass="success-toast-override"
+    ErrorIcon ="fa fa-bug"
+    SuccessIcon ="fa fa-thumbs-up"
+/>
+<RadzenComponents />
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
+        <Modal Title="My first Modal dialog" Show="@ShowModal" OnConfirm="() => ConfirmDialog()" OnCancel="(() => CancelDialog())">
+            <p>
+                This is my first modal dialog
+            </p>
+        </Modal>
+        <AuthorizeView>
+            <Authorized>
+                <div class="top-row px-4">
+                    <p>Welcome @context.User?.Identity?.Name</p>
+                </div>
+                <article class="row content px-4 d-flex justify-content-center">
+                    @Body
+                </article>
+            </Authorized>
+            <NotAuthorized><Login></Login></NotAuthorized>
+        </AuthorizeView>
     </main>
 </div>
+
+@code {
+    public bool ShowModal;
+
+    protected override void OnInitialized()
+    {
+        this.ShowModal = false;
+        StateHasChanged();
+    }
+
+    public void ConfirmDialog()
+    {
+        this.ShowModal = false;
+        StateHasChanged();
+    }
+
+    public void CancelDialog()
+    {
+        this.ShowModal = false;
+        StateHasChanged();
+    }
+}

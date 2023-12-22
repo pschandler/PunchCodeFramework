@@ -15,6 +15,6 @@ namespace PunchcodeStudios.Application.Features.Gallery
         public string Description { get; set; } = string.Empty;
         public IReadOnlyList<GalleryCategory> GalleryCategories { get; set; }
         public IReadOnlyList<GalleryType> GalleryTypes { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
     }
 }

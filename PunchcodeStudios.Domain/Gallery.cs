@@ -16,6 +16,8 @@ public class Gallery : BaseEntity
     }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+
+
     public List<GalleryCategory> Categories { get; set; }
     public List<GalleryType> Types { get; set; }
 }

@@ -1,11 +1,12 @@
-﻿using PunchodeStudios.Admin.Contracts;
-using PunchodeStudios.Admin.Services.Base;
+﻿using Blazored.LocalStorage;
+using PunchcodeStudios.Admin.Contracts;
+using PunchcodeStudios.Admin.Services.Base;
 
-namespace PunchodeStudios.Admin.Services
+namespace PunchcodeStudios.Admin.Services
 {
     public class GalleryTypeService : BaseHttpService, IGalleryTypeService
     {
-        public GalleryTypeService(IClient client) : base(client)
+        public GalleryTypeService(IClient client, ILocalStorageService localStorage) : base(client, localStorage)
         {
 
         }

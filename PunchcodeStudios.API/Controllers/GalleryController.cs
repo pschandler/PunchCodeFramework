@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PunchcodeStudios.Application.Features.Gallery;
 using PunchcodeStudios.Application.Features.Gallery.Commands.CreateGallery;
@@ -14,6 +15,7 @@ namespace PunchcodeStudios.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GalleryController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -24,13 +26,15 @@ namespace PunchcodeStudios.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<GalleryDTO>> GetAll()
         {
             var galleries = await _mediator.Send(new GetGalleriesQuery());
-            return galleries;
+            return galleries.OrderBy(o => o.DateCreated);
         }
 
         [HttpGet("id/{id}")]
+        [AllowAnonymous]
         public async Task<GalleryDTO> GetById(Guid id)
         {
             var gallery = await _mediator.Send(new GetGalleryByIdQuery(id));
@@ -38,6 +42,7 @@ namespace PunchcodeStudios.API.Controllers
         }
 
         [HttpGet("name/{name}")]
+        [AllowAnonymous]
         public async Task<GalleryDTO> GetByName(string name)
         {
             var gallery = await _mediator.Send(new GetGalleryByNameQuery(name));

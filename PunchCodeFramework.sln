@@ -25,13 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.Infrastruc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.API", "PunchcodeStudios.API\PunchcodeStudios.API.csproj", "{C28B81E8-120A-4292-981C-F03B8FDB676D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunchcodeStudios.UnitTests", "PunchcodeStudios.UnitTests\PunchcodeStudios.UnitTests.csproj", "{91187F55-7D1D-4784-A798-2ADC6B460C0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.UnitTests", "PunchcodeStudios.UnitTests\PunchcodeStudios.UnitTests.csproj", "{91187F55-7D1D-4784-A798-2ADC6B460C0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunchcodeStudios.Persistence.IntegrationTests", "PunchcodeStudios.Persistence.IntegrationTests\PunchcodeStudios.Persistence.IntegrationTests.csproj", "{9B132AB8-510E-48EE-8B54-DDAF1059B1C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.Persistence.IntegrationTests", "PunchcodeStudios.Persistence.IntegrationTests\PunchcodeStudios.Persistence.IntegrationTests.csproj", "{9B132AB8-510E-48EE-8B54-DDAF1059B1C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunchodeStudios.Admin", "PunchodeStudios.Admin\PunchodeStudios.Admin.csproj", "{9E7F3546-781E-4885-B67F-FD2785ED5CD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.Admin", "PunchodeStudios.Admin\PunchcodeStudios.Admin.csproj", "{9E7F3546-781E-4885-B67F-FD2785ED5CD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunchcodeStudios.Identity", "PunchcodeStudios.Identity\PunchcodeStudios.Identity.csproj", "{83CA34E0-9F21-455A-81E2-E93D49925A96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.Identity", "PunchcodeStudios.Identity\PunchcodeStudios.Identity.csproj", "{83CA34E0-9F21-455A-81E2-E93D49925A96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunchcodeStudios.UI.Components", "PunchcodeStudios.UI.Components\PunchcodeStudios.UI.Components.csproj", "{56006351-2613-4D49-9933-CE5FA7D8245F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{83CA34E0-9F21-455A-81E2-E93D49925A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83CA34E0-9F21-455A-81E2-E93D49925A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83CA34E0-9F21-455A-81E2-E93D49925A96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56006351-2613-4D49-9933-CE5FA7D8245F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56006351-2613-4D49-9933-CE5FA7D8245F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56006351-2613-4D49-9933-CE5FA7D8245F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56006351-2613-4D49-9933-CE5FA7D8245F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +99,7 @@ Global
 		{9B132AB8-510E-48EE-8B54-DDAF1059B1C5} = {D7CDC57A-0C5D-481A-B77C-ED76AA4DA63E}
 		{9E7F3546-781E-4885-B67F-FD2785ED5CD4} = {DF94D9D0-5F7E-47CA-8C9F-5954C3B18E50}
 		{83CA34E0-9F21-455A-81E2-E93D49925A96} = {E40A6677-8F2D-42DC-B87D-AAF33EA3255A}
+		{56006351-2613-4D49-9933-CE5FA7D8245F} = {DF94D9D0-5F7E-47CA-8C9F-5954C3B18E50}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {469C2225-3282-4610-A9C3-1B8974608E7C}

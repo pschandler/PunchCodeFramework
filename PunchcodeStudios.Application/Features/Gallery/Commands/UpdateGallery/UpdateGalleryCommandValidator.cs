@@ -25,6 +25,8 @@ namespace PunchcodeStudios.Application.Features.Gallery.Commands.UpdateGallery
                 .MaximumLength(75).WithMessage("{PropertyName} has a maximum length of 75.");
             RuleFor(p => p.Description)
                 .MaximumLength(100).WithMessage("{PropertyName} has a maximum length of 100.");
+            RuleFor(p => p.DateCreated)
+                .NotNull().WithMessage("{PropertyName} is required.");
         }
 
         private async Task<bool> GalleryExists(Guid id, CancellationToken token)

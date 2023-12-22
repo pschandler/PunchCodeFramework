@@ -1,9 +1,43 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<div class="col-md-8 p-5">
+<PCS_FormCard
+Heading ="Gallery Admin"
+Tagline ="Add a gallery to the site"
+ReturnText ="return to galleries"
+>
+    <form method="post" @onsubmit="OnSubmit" style="max-width:500px;">
+        <div class="form-goup">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control mb-3"/>
+        </div>
+        <div class="form-goup">
+            <label class="form-label">Last Name</label>
+            <textarea type="text" class="form-control mb-3" rows="5" />
+        </div>
+        <div class="form-goup">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control mb-3" />
+        </div>
+        <div class="button-content d-flex justify-content-between">
+            <div class="col-md-4"><input class="btn btn-danger form-control mb-3" onclick="OnCancel()" value="CancelText" /></div>
+            <div class="col-md-4"><input type="submit" class="btn btn-primary form-control mb-3" onclick="OnSubmit()" value="SubmitText" /></div>
+        </div>
+    </form>
+</PCS_FormCard>
+</div>
 
-<h1>Hello, world!</h1>
+@code {
+    void OnReturn()
+    {
 
-Welcome to your new app.
+    }
+    public void OnCancel()
+    {
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    }
+    public void OnSubmit()
+    {
+        
+    }
+}

@@ -1,7 +1,7 @@
-﻿using PunchodeStudios.Admin.Models.Gallery;
-using PunchodeStudios.Admin.Services.Base;
+﻿using PunchcodeStudios.Admin.Models.Gallery;
+using PunchcodeStudios.Admin.Services.Base;
 
-namespace PunchodeStudios.Admin.Contracts
+namespace PunchcodeStudios.Admin.Contracts
 {
     public interface IGalleryService
     {

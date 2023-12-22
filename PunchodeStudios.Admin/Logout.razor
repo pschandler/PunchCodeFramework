@@ -1,0 +1,18 @@
+﻿
+@using PunchcodeStudios.Admin.Contracts;
+
+@inject NavigationManager Navigation
+@inject IAuthenticationService _authService
+
+@page "/users/logout"
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        await _authService.Logout();
+        Navigation.NavigateTo("/");
+    }
+}
+
+

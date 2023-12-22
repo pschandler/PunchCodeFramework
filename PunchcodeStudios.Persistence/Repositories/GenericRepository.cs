@@ -34,6 +34,7 @@ namespace PunchcodeStudios.Persistence.Repositories
         public async Task<T> CreateAsync(T entity)
         {
             await _context.AddAsync(entity);
+            _context.Entry(entity).State = EntityState.Added;
             await _context.SaveChangesAsync();
             return entity;
         }

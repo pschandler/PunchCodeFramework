@@ -1,32 +1,36 @@
 ﻿using AutoMapper;
-using PunchodeStudios.Admin.Contracts;
-using PunchodeStudios.Admin.Models.Gallery;
-using PunchodeStudios.Admin.Services.Base;
+using Blazored.LocalStorage;
+using PunchcodeStudios.Admin.Contracts;
+using PunchcodeStudios.Admin.Models.Gallery;
+using PunchcodeStudios.Admin.Services.Base;
 
-namespace PunchodeStudios.Admin.Services
+namespace PunchcodeStudios.Admin.Services
 {
     public class GalleryService  : BaseHttpService, IGalleryService
     {
         private readonly IMapper _mapper;
 
-        public GalleryService(IClient client, IMapper mapper) : base(client)
+        public GalleryService(IClient client, IMapper mapper, ILocalStorageService localStorage) : base(client, localStorage)
         {
             this._mapper = mapper;
         }
         public async Task<List<GalleryViewModel>> GetGalleries()
         {
+            await AddBearerToken();
             var galleries = await _client.GalleryAllAsync();
             return _mapper.Map<List<GalleryViewModel>>(galleries);
         }
 
         public async Task<GalleryViewModel> GetGalleryById(Guid id)
         {
+            await AddBearerToken();
             var gallery = await _client.IdAsync(id);
             return _mapper.Map<GalleryViewModel>(gallery);
         }
 
         public async  Task<GalleryViewModel> GetGalleryByName(string name)
         {
+            await AddBearerToken();
             var gallery = await _client.NameAsync(name);
             return _mapper.Map<GalleryViewModel>(gallery);
         }
@@ -36,6 +40,7 @@ namespace PunchodeStudios.Admin.Services
         {
             try
             {
+                await AddBearerToken();
                 var createGalleryCommand = _mapper.Map<CreateGalleryCommand>(model);
                 Guid id = await _client.GalleryPOSTAsync(createGalleryCommand);
                 return new ApiResponse<Guid>()
@@ -54,6 +59,7 @@ namespace PunchodeStudios.Admin.Services
         {
             try
             {
+                await AddBearerToken();
                 var updateGalleryCommand = _mapper.Map<UpdateGalleryCommand>(model);
                 await _client.GalleryPUTAsync(updateGalleryCommand);
                 return new ApiResponse<Guid>()
@@ -72,6 +78,7 @@ namespace PunchodeStudios.Admin.Services
         {
             try
             {
+                await AddBearerToken();
                 bool response = await _client.GalleryDELETEAsync(id);
                 return new ApiResponse<Guid>()
                 {

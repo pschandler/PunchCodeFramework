@@ -1,11 +1,17 @@
-﻿namespace PunchodeStudios.Admin.Services.Base
+﻿using Blazored.LocalStorage;
+using System.Net.Http.Headers;
+
+namespace PunchcodeStudios.Admin.Services.Base
 {
     public class BaseHttpService
     {
         protected IClient _client;
-        public BaseHttpService(IClient client)
+        protected readonly ILocalStorageService _localStorage;
+
+        public BaseHttpService(IClient client, ILocalStorageService localStorage)
         {
-            _client = client;
+            this._client = client;
+            this._localStorage = localStorage;
         }
 
         protected ApiResponse<Guid> ConvertApiExceptions<Guid>(ApiException ex)
@@ -34,6 +40,15 @@
                     Message = "An internal error has occurred. Pleas try again later.",
                     Success = false
                 };
+            }
+        }
+
+        protected async Task AddBearerToken()
+        {
+            if (await _localStorage.ContainKeyAsync("token"))
+            {
+                _client.HttpClient.DefaultRequestHeaders.Authorization = 
+                    new AuthenticationHeaderValue("Bearer", await _localStorage.GetItemAsync<string>("token"));
             }
         }
     }

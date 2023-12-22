@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+	
+	<PropertyGroup>
+		<PackageId>PunchcodeStudios.UI.Components</PackageId>
+		<Version>0.1.0</Version>
+		<Authors>Patrick Schandler</Authors>
+		<Company>PunchcodeStudios</Company>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Description>Razor component library for the PunchcodeStudios suite of applications.</Description>
+		<Copyright>2023 - intellectual rights reserved</Copyright>
+	</PropertyGroup>
+	
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.5" />
+  </ItemGroup>
+
+</Project>

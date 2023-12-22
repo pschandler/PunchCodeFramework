@@ -1,0 +1,63 @@
+﻿@using PunchcodeStudios.Admin.Contracts;
+@using PunchcodeStudios.Admin.Models.Gallery;
+@page "/details/{id}"
+
+<h3>Gallery Details</h3>
+
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+    <div class="alert alert-danger">@Message</div>
+}
+
+<div class="">
+    <h2>General</h2>
+
+    <div class="details row">
+        <div class="col-md-6"><label>Name: </label>@Gallery?.Name</div>
+        <div class="col-md-6"><label>Description: </label>@Gallery?.Description</div>
+    </div>
+
+    <div class="details row">
+        <div class="col-md-6"><label>Created: </label>@Gallery?.DateCreated?.ToString("MM/dd/yyyy hh:mm tt")</div>
+        <div class="col-md-6"><label>Last Updated: </label>@Gallery?.DateUpdated?.ToString("MM/dd/yyyy hh:mm tt")</div>
+    </div>
+
+    <div class="categories">
+
+        <h2>Categories</h2>
+        @if(Gallery.Categories?.Count == 0) {
+            <p>No categories have been assigned.</p>
+        }
+        else
+        {
+            @foreach (var item in Gallery.Categories)
+            {
+                <ul>
+                    <li><RadzenLabel>Name: </RadzenLabel>@item?.Name</li>
+                    <li><RadzenLabel>Description: </RadzenLabel>@item?.Description</li>
+                </ul>
+            }
+        }
+    </div>
+
+    <div class="types">
+        <h2>Types</h2>
+@*         @if (Gallery?.Types?.Count == 0)
+        {
+            <p>No types have been assigned.</p>
+        }
+        else
+        {
+            @foreach (var item in Gallery.Types)
+            {
+                <ul>
+                    <li><RadzenLabel>Name: </RadzenLabel>@item?.Name</li>
+                    <li><RadzenLabel>Description: </RadzenLabel>@item?.Description</li>
+                </ul>
+
+            }
+        } *@
+    </div>
+</div>
+
