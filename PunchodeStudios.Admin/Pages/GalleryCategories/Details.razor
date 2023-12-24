@@ -1,0 +1,25 @@
+﻿@using PunchcodeStudios.Admin.Contracts;
+@using PunchcodeStudios.Admin.Models.Gallery;
+@page "/gallery-category-details/{id}"
+
+<h3>Gallery Category Details</h3>
+
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+    <div class="alert alert-danger">@Message</div>
+}
+
+<div class="">
+    <h2>General</h2>
+
+    <div class="details row">
+        <div class="col-md-6"><label>Name: </label>@Model.Name</div>
+        <div class="col-md-6"><label>Description: </label>@Model.Description</div>
+    </div>
+
+    <div class="details row">
+        <div class="col-md-6"><label>Created: </label>@Model.DateCreated?.ToString("MM/dd/yyyy hh:mm tt")</div>
+        <div class="col-md-6"><label>Last Updated: </label>@Model.DateUpdated?.ToString("MM/dd/yyyy hh:mm tt")</div>
+    </div>
+</div>

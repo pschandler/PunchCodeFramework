@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PunchcodeStudios.Application.Features.GalleryCategory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace PunchcodeStudios.Application.Features.Gallery.Commands.UpdateGallery
         public string Description { get; set; } = string.Empty;
 
         public DateTime DateCreated { get; set; }
+        public List<GalleryCategoryDTO>? Categories { get; set; }
     }
 }

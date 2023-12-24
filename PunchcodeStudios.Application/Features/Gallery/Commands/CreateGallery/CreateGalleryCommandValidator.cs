@@ -10,15 +10,15 @@ namespace PunchcodeStudios.Application.Features.Gallery.Commands.CreateGallery
 {
     public class CreateGalleryCommandValidator : AbstractValidator<CreateGalleryCommand>
     {
-        private readonly IGalleryRepository _galleryRepository;
+        private readonly IGalleryRepository _repo;
 
-        public CreateGalleryCommandValidator(IGalleryRepository galleryRepository)
+        public CreateGalleryCommandValidator(IGalleryRepository repo)
         {
-            this._galleryRepository = galleryRepository;
+            this._repo = repo;
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .MaximumLength(75).WithMessage("{PropertyName} has a maximum length of 75.");
+                .MaximumLength(50).WithMessage("{PropertyName} has a maximum length of 50.");
             RuleFor(p => p.Description)
                 .MaximumLength(100).WithMessage("{PropertyName} has a maximum length of 100.");
             RuleFor(q => q)
@@ -27,7 +27,7 @@ namespace PunchcodeStudios.Application.Features.Gallery.Commands.CreateGallery
 
         private Task<bool> GalleryNameUnique(CreateGalleryCommand command, CancellationToken token)
         {
-            return _galleryRepository.GalleryIsUnique(command.Name);
+            return _repo.GalleryIsUnique(command.Name);
         }
     }
 }

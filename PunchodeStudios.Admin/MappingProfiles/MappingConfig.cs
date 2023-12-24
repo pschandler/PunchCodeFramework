@@ -22,6 +22,25 @@ namespace PunchcodeStudios.Admin.MappingProfiles
                  options => options.MapFrom(source => source.DateCreated.DateTime)
                 )
                 .ReverseMap();
+
+            CreateMap<GalleryCategoryDTO, GalleryCategoryViewModel>()
+                .ForMember(
+                 dest => dest.DateCreated,
+                 options => options.MapFrom(source => source.DateCreated.DateTime)
+                )
+                .ForMember(
+                 dest => dest.DateUpdated,
+                 options => options.MapFrom(source => source.DateUpdated.Value.DateTime)
+                )
+                .ReverseMap();
+            CreateMap<CreateGalleryCategoryCommand, GalleryCategoryViewModel>()
+                .ReverseMap();
+            CreateMap<UpdateGalleryCategoryCommand, GalleryCategoryViewModel>()
+               .ForMember(
+                 dest => dest.DateCreated,
+                 options => options.MapFrom(source => source.DateCreated.DateTime)
+                )
+                .ReverseMap();
         }
     }
 }

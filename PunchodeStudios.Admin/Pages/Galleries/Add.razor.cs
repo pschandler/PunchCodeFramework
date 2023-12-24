@@ -27,7 +27,7 @@ namespace PunchcodeStudios.Admin.Pages.Galleries
             base.OnInitialized();
         }
 
-        async void OnSubmit()
+        private async void HandleValidSubmit()
         {
 
             if (await _galleryService.CreateGallery(Model) != null)
@@ -35,6 +35,22 @@ namespace PunchcodeStudios.Admin.Pages.Galleries
                 _navigationManager.NavigateTo("/galleries");
             }
             Message = "Error creating gallery";
+        }
+
+        private void HandleInvalidSubmit()
+        {
+
+            //if (await _galleryService.CreateGallery(Model) != null)
+            //{
+            //    _navigationManager.NavigateTo("/galleries");
+            //}
+            Message = "Error creating gallery";
+        }
+
+        public void OnCancel()
+        {
+            this.Model = new GalleryViewModel();
+            StateHasChanged();
         }
     }
 }

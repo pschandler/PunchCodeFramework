@@ -29,24 +29,24 @@ namespace PunchcodeStudios.API.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<GalleryDTO>> GetAll()
         {
-            var galleries = await _mediator.Send(new GetGalleriesQuery());
-            return galleries.OrderBy(o => o.DateCreated);
+            var items = await _mediator.Send(new GetGalleriesQuery());
+            return items.OrderBy(o => o.DateCreated);
         }
 
         [HttpGet("id/{id}")]
         [AllowAnonymous]
         public async Task<GalleryDTO> GetById(Guid id)
         {
-            var gallery = await _mediator.Send(new GetGalleryByIdQuery(id));
-            return gallery;
+            var item = await _mediator.Send(new GetGalleryByIdQuery(id));
+            return item;
         }
 
         [HttpGet("name/{name}")]
         [AllowAnonymous]
         public async Task<GalleryDTO> GetByName(string name)
         {
-            var gallery = await _mediator.Send(new GetGalleryByNameQuery(name));
-            return gallery;
+            var item = await _mediator.Send(new GetGalleryByNameQuery(name));
+            return item;
         }
 
         // POST api/<GalleryController>

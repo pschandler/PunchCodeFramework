@@ -4,9 +4,9 @@ namespace PunchcodeStudios.Application.Contracts.Persisitence
 {
     public interface IGalleryCategoryRepository : IGenericRepository<GalleryCategory>
     {
-        Task<GalleryCategory?> GetGalleryCategoriesById(Guid id);
-        Task<GalleryCategory?> GetGalleryCategoriesByName(string name);
-        Task<IReadOnlyList<GalleryCategory>> GetAllGalleryCategories(bool includeDeleted = false);
-        Task<bool> GalleryCategoryExists(string name, bool includeDeleted);
+        Task<GalleryCategory?> GetGalleryCategoryById(Guid id);
+        Task<GalleryCategory?> GetGalleryCategoryByName(string name);
+        Task<bool> GalleryCategoryExists(Guid Id, bool includeDeleted = false);
+        Task<bool> GalleryCategoryIsUnique(string name, bool includeDeleted = false);
     }
 }

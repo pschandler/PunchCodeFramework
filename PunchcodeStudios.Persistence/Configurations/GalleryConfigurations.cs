@@ -14,8 +14,8 @@ namespace PunchcodeStudios.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Gallery> builder)
         {
-            builder.Property(q => q.Name).IsRequired().HasMaxLength(100);
-            builder.Property(q => q.Description).IsRequired().HasMaxLength(150);
+            builder.Property(q => q.Name).IsRequired().HasMaxLength(50);
+            builder.Property(q => q.Description).IsRequired().HasMaxLength(100);
         }
     }
 }

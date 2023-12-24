@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.Admin", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.Identity", "PunchcodeStudios.Identity\PunchcodeStudios.Identity.csproj", "{83CA34E0-9F21-455A-81E2-E93D49925A96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunchcodeStudios.UI.Components", "PunchcodeStudios.UI.Components\PunchcodeStudios.UI.Components.csproj", "{56006351-2613-4D49-9933-CE5FA7D8245F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PunchcodeStudios.UI.Components", "PunchcodeStudios.UI.Components\PunchcodeStudios.UI.Components.csproj", "{56006351-2613-4D49-9933-CE5FA7D8245F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

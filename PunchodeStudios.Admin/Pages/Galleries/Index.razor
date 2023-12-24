@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="m-2 d-flex justify-content-end">
-        <button @onclick="AddGallery" class="btn btn-success">Add Gallery</button>
+        <button @onclick="Add" class="btn btn-success">Add Gallery</button>
     </div>
 </div>
 
@@ -13,11 +13,11 @@
 }
 
 <div class="d-flex row-cols-1">
-@if(Galleries == null)
+@if(Model == null)
 {
     <p>Loading Data...</p>
 }
-else if(Galleries.Count == 0)
+else if(Model.Count == 0)
 {
     <p>No data to DISPLAY</p>
 }
@@ -35,7 +35,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Galleries)
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.Name</td>
@@ -44,10 +44,10 @@ else
                     <td>@item.Types.Count</td>
                     <td>@item.Categories.Count</td>
                     <td>
-                        <button @onclick=@(() => GalleryDetails(item.Id)) class="btn btn-info">Details</button>
+                        <button @onclick=@(() => Details(item.Id)) class="btn btn-info">Details</button>
                         <AuthorizeView Roles="System_Admin">
-                            <button @onclick=@(() => GalleryEdit(item.Id)) class="btn btn-warning">Edit</button>
-                            <button @onclick=@(() => GalleryDelete(item.Id)) class="btn btn-danger">Delete</button>
+                            <button @onclick=@(() => Edit(item.Id)) class="btn btn-warning">Edit</button>
+                            <button @onclick=@(() => Delete(item.Id)) class="btn btn-danger">Delete</button>
                         </AuthorizeView>
 
                     </td>

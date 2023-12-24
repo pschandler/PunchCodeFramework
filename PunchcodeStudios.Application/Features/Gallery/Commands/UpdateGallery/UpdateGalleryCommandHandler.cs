@@ -13,20 +13,20 @@ namespace PunchcodeStudios.Application.Features.Gallery.Commands.UpdateGallery
     public class UpdateGalleryCommandHandler : IRequestHandler<UpdateGalleryCommand, bool>
     {
         private readonly IMapper _mapper;
-        private readonly IGalleryRepository _galleryRepository;
+        private readonly IGalleryRepository _repo;
         private readonly IAppLogger<UpdateGalleryCommandHandler> _logger;
 
         public UpdateGalleryCommandHandler(IMapper mapper, 
-            IGalleryRepository galleryRepository,
+            IGalleryRepository repo,
             IAppLogger<UpdateGalleryCommandHandler> logger)
         {
             this._mapper = mapper;
-            this._galleryRepository = galleryRepository;
+            this._repo = repo;
             this._logger = logger;
         }
         public async Task<bool> Handle(UpdateGalleryCommand request, CancellationToken cancellationToken)
         {
-            var validator = new UpdateGalleryCommandValidator(_galleryRepository);
+            var validator = new UpdateGalleryCommandValidator(_repo);
             var validationResult = await validator.ValidateAsync(request);
             if (validationResult.Errors.Any())
             {
@@ -36,7 +36,7 @@ namespace PunchcodeStudios.Application.Features.Gallery.Commands.UpdateGallery
 
             var gallery = _mapper.Map<Domain.Gallery>(request);
 
-            await _galleryRepository.UpdateAsync(gallery);
+            await _repo.UpdateAsync(gallery);
 
             return true;
         }

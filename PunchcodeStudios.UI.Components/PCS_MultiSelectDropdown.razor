@@ -1,0 +1,80 @@
+﻿@using BlazorBootstrap
+@using PunchcodeStudios.UI.Components.Models
+@using System.Diagnostics.CodeAnalysis
+@inherits InputBase<SelectOption>
+
+<div class="row">
+    <Accordion>
+        <AccordionItem Title=@TitleText>
+            <Content>
+                <div class="row">
+                    @if(ShowSelectAll)
+                    {
+                        <div><Button @onclick="SelectAll" Class="btn btn-primary mb-3">@ButtonText</Button></div>
+                        <hr />                      
+                    }
+                    @foreach(SelectOption opt in AvailableOptions)
+                    {
+                        <div class="col-md-6">
+                           <label for="@opt.Value"><InputCheckbox @bind-Value="@opt.Selected" class="me-1;"></InputCheckbox>@opt.Text</label>
+                        </div>
+                    }
+                </div>
+            </Content>
+        </AccordionItem>
+    </Accordion>
+</div>
+
+<script src="_framework/blazor.webassembly.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<!-- Add chart.js reference if chart components are used in your application. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.js" integrity="sha512-gQhCDsnnnUfaRzD8k1L5llCCV6O9HN09zClIzzeJ8OJ9MpGmIlCxm+pdCkqTwqJ4JcjbojFr79rl2F1mzcoLMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Add chartjs-plugin-datalabels.min.js reference if chart components with data label feature is used in your application. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="_content/Blazor.Bootstrap/blazor.bootstrap.js"></script>
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = string.Empty;
+    [Parameter]
+    public string TitleText { get; set; } = string.Empty;
+    [Parameter]
+    public bool ShowSelectAll { get; set; } = false;
+
+    [Parameter]
+    public List<SelectOption> AvailableOptions { get; set; } = new List<SelectOption>();
+
+    private string ButtonText {get; set; } = "Select All";
+
+    private void SelectAll()
+    {
+        ButtonText = ButtonText == "Select All" ? "Unselect All" : "Select All";
+    }
+
+    private string CurrentOption {
+        get => CurrentValue.Value;
+        set
+        {
+            CurrentValue = AvailableOptions.Find(o => o.Value == value);
+        } 
+    }
+
+    [Parameter]
+    public List<string> SelectedOptions { get; set; } = new List<string>();
+
+    protected override bool TryParseValueFromString(string value, [MaybeNullWhen(false)] out SelectOption result, [MaybeNullWhen(true)] [NotNullWhen(false)] out string validationErrorMessage)
+    {
+        try
+        {
+            result = AvailableOptions.First(o => o.Value == value.ToString());
+            validationErrorMessage = null;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            result = null;
+            validationErrorMessage = ex.Message;
+            return false;
+        }
+    }
+}

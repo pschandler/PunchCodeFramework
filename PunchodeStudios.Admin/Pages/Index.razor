@@ -1,7 +1,44 @@
-﻿@page "/"
+﻿@using System.Drawing;
+@using PunchcodeStudios.UI.Components.Models
+
+@page "/"
 
 <div class="col-md-8 p-5">
-<PCS_FormCard
+    <PCS_FormCard 
+    Heading="Multi select dropdown"
+    Tagline="demonstrates a multi select dropdown component"
+    ReturnText="">
+        <EditForm Model="@model">
+            <PCS_MultiSelectDropdown 
+                AvailableOptions="@Options"
+                TitleText="Select one or more Categories"
+                ShowSelectAll=true
+                @bind-Value="@model.Option">
+            </PCS_MultiSelectDropdown>
+        </EditForm>
+        @foreach(SelectOption selected in Options)
+        {
+            if(selected.Selected == true)
+            {
+            <p>selected.Value</p>
+            }
+        }
+    </PCS_FormCard>
+
+@* <PCS_FormCard
+Heading ="Color Picker"
+Tagline ="Custom Color Picker"
+ReturnText =""
+>
+    <EditForm Model="CurrentPerson">
+            <InputColor @bind-Value=CurrentPerson.FavoriteColor></InputColor>
+    </EditForm>
+        <div><p>Favorite color is:</p>
+            <div style="width:100px; height:100px; background-color:@favColor"></div>
+        </div>
+</PCS_FormCard>
+ *@
+@* <PCS_FormCard
 Heading ="Gallery Admin"
 Tagline ="Add a gallery to the site"
 ReturnText ="return to galleries"
@@ -24,10 +61,43 @@ ReturnText ="return to galleries"
             <div class="col-md-4"><input type="submit" class="btn btn-primary form-control mb-3" onclick="OnSubmit()" value="SubmitText" /></div>
         </div>
     </form>
-</PCS_FormCard>
+</PCS_FormCard> *@
 </div>
 
 @code {
+    Person CurrentPerson = new Person
+        {
+            FavoriteColor = Color.Green
+        };
+
+    class Person
+    {
+        public Color FavoriteColor { get; set; }
+    }
+
+    class DropdownModel
+    {
+        public SelectOption Option { get; set; } = new SelectOption();
+    }
+
+    List<SelectOption> Options = new List<SelectOption>
+    {
+        new SelectOption {Text = "Select One", Value = new Guid("678704bf-d8ee-4edd-b874-b741ea7f0151").ToString(), Selected = false },
+        new SelectOption {Text = "Select Two", Value = new Guid("3356d6b6-af96-4bb8-8526-b983e9c047e9").ToString(), Selected = false },
+        new SelectOption {Text = "Select Three", Value = new Guid("bce6b96c-01dd-44e7-aa4d-d3b2a12a1ae6").ToString(), Selected = false },
+        new SelectOption {Text = "Select Four", Value = new Guid("7b9e7091-92e5-4d5d-94fe-047ff96e48a8").ToString(), Selected = false },
+        new SelectOption {Text = "Select Five", Value = new Guid("e6240ed9-a4cb-41b7-a04e-5c89b0d8ab50").ToString(), Selected = false }
+    };
+
+    DropdownModel model;
+    protected override void OnInitialized()
+    {
+        model = new DropdownModel();
+        base.OnInitialized();
+    }
+
+    string favColor => InputColor.ColorToString(CurrentPerson.FavoriteColor);
+
     void OnReturn()
     {
 

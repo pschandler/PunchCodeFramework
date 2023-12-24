@@ -28,7 +28,12 @@
                         <RadzenTextArea Name="Description" @bind-Value=@Model.Description class="form-control" />
                         <RadzenRequiredValidator Component="Description" Text="Description is required!" />
                     </div>
-                    <RadzenButton ButtonType="ButtonType.Submit" Text="Save" class="btn btn-default" />
+                    <PCS_MultiSelectDropdown AvailableOptions="@Model.AvailableCategories"
+                                                TitleText="Select one or more Categories"
+                                                ShowSelectAll=true
+                                                @bind-Value="@Option">
+                    </PCS_MultiSelectDropdown>
+                    <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Save" class="btn btn-default" />
                 </RadzenTemplateForm>
             </RadzenCard>
         </RadzenColumn>

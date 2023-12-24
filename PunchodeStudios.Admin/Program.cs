@@ -30,5 +30,6 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddBlazorBootstrap();
 
 await builder.Build().RunAsync();
