@@ -9,15 +9,11 @@ namespace PunchcodeStudios.Domain;
 
 public class Gallery : BaseEntity
 {
-    public Gallery()
-    {
-        Categories = new List<GalleryCategory>();
-        Types = new List<GalleryType>();
-    }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+    public Guid GalleryTypeId { get; set; }
 
-
-    public List<GalleryCategory> Categories { get; set; }
-    public List<GalleryType> Types { get; set; }
+    public List<CategoryGallery> CategoryGalleries { get; set; } = new();
+    public List<Category> Categories { get; } = new();
+    public GalleryType Type { get; set; } = new();
 }

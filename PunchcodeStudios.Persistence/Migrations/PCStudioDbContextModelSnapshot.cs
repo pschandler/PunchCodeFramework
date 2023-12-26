@@ -22,7 +22,7 @@ namespace PunchcodeStudios.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GalleryGalleryCategory", b =>
+            modelBuilder.Entity("CategoryGallery", b =>
                 {
                     b.Property<Guid>("CategoriesId")
                         .HasColumnType("uniqueidentifier");
@@ -34,22 +34,70 @@ namespace PunchcodeStudios.Persistence.Migrations
 
                     b.HasIndex("GalleriesId");
 
-                    b.ToTable("GalleryGalleryCategory");
+                    b.ToTable("CategoryGallery");
                 });
 
-            modelBuilder.Entity("GalleryGalleryType", b =>
+            modelBuilder.Entity("PunchcodeStudios.Domain.Category", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("PunchcodeStudios.Domain.CategoryGallery", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoriesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("GalleriesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TypesId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasKey("Id");
 
-                    b.HasKey("GalleriesId", "TypesId");
+                    b.HasIndex("CategoriesId");
 
-                    b.HasIndex("TypesId");
+                    b.HasIndex("GalleriesId");
 
-                    b.ToTable("GalleryGalleryType");
+                    b.ToTable("CategoryGalleries", (string)null);
                 });
 
             modelBuilder.Entity("PunchcodeStudios.Domain.Gallery", b =>
@@ -58,7 +106,7 @@ namespace PunchcodeStudios.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateDeleted")
@@ -68,46 +116,26 @@ namespace PunchcodeStudios.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Galleries");
-                });
-
-            modelBuilder.Entity("PunchcodeStudios.Domain.GalleryCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("GalleryTypeId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateDeleted")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("GalleryCategories");
+                    b.HasIndex("GalleryTypeId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Galleries");
                 });
 
             modelBuilder.Entity("PunchcodeStudios.Domain.GalleryType", b =>
@@ -116,7 +144,7 @@ namespace PunchcodeStudios.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateDeleted")
@@ -138,9 +166,9 @@ namespace PunchcodeStudios.Persistence.Migrations
                     b.ToTable("GalleryTypes");
                 });
 
-            modelBuilder.Entity("GalleryGalleryCategory", b =>
+            modelBuilder.Entity("CategoryGallery", b =>
                 {
-                    b.HasOne("PunchcodeStudios.Domain.GalleryCategory", null)
+                    b.HasOne("PunchcodeStudios.Domain.Category", null)
                         .WithMany()
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -153,19 +181,49 @@ namespace PunchcodeStudios.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GalleryGalleryType", b =>
+            modelBuilder.Entity("PunchcodeStudios.Domain.CategoryGallery", b =>
                 {
-                    b.HasOne("PunchcodeStudios.Domain.Gallery", null)
-                        .WithMany()
+                    b.HasOne("PunchcodeStudios.Domain.Category", "Category")
+                        .WithMany("CategoryGalleries")
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("PunchcodeStudios.Domain.Gallery", "Gallery")
+                        .WithMany("CategoryGalleries")
                         .HasForeignKey("GalleriesId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Gallery");
+                });
+
+            modelBuilder.Entity("PunchcodeStudios.Domain.Gallery", b =>
+                {
+                    b.HasOne("PunchcodeStudios.Domain.GalleryType", "Type")
+                        .WithMany("Galleries")
+                        .HasForeignKey("GalleryTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PunchcodeStudios.Domain.GalleryType", null)
-                        .WithMany()
-                        .HasForeignKey("TypesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("PunchcodeStudios.Domain.Category", b =>
+                {
+                    b.Navigation("CategoryGalleries");
+                });
+
+            modelBuilder.Entity("PunchcodeStudios.Domain.Gallery", b =>
+                {
+                    b.Navigation("CategoryGalleries");
+                });
+
+            modelBuilder.Entity("PunchcodeStudios.Domain.GalleryType", b =>
+                {
+                    b.Navigation("Galleries");
                 });
 #pragma warning restore 612, 618
         }

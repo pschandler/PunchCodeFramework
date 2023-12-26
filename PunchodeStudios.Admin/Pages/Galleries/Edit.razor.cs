@@ -19,7 +19,10 @@ namespace PunchcodeStudios.Admin.Pages.Galleries
         private IGalleryService _galleryService { get; set; }
 
         [Inject]
-        private IGalleryCategoryService _categoryService { get; set; }
+        private ICategoryService _categoryService { get; set; }
+
+        [Inject]
+        private ICategoryGalleryService _categoryGalleryService { get; set; }
 
         public string Message { get; set; }
 
@@ -29,15 +32,15 @@ namespace PunchcodeStudios.Admin.Pages.Galleries
         public List<SelectOption> Options { get; set; } = new List<SelectOption>();
 
         public SelectOption Option { get; set; } = new SelectOption();
-        public List<GalleryCategoryViewModel> GalleryCategories { get; set; } = new List<GalleryCategoryViewModel>();
+        public List<CategoryViewModel> Categories { get; set; } = new List<CategoryViewModel>();
 
         protected override async void OnInitialized()
         {
             Model = await _galleryService.GetGalleryById(new Guid(Id));
             Options = new List<SelectOption>();
-            GalleryCategories = await _categoryService.GetGalleryCategories();
+            Categories = await _categoryService.GetCategories();
 
-            foreach (var option in GalleryCategories)
+            foreach (var option in Categories)
             {
                 Options.Add( new SelectOption { Text = option.Name, Value = option.Id.ToString(), Selected = false } );
             }
@@ -49,13 +52,18 @@ namespace PunchcodeStudios.Admin.Pages.Galleries
 
         async void SubmitUpdate(GalleryViewModel args)
         {
+            foreach (var option in args.AvailableCategories.Where(a => a.Selected == true))
+            {
+                CategoryGalleryViewModel model = new CategoryGalleryViewModel()
+                {
+                    GalleriesId = new Guid(Id),
+                    CategoriesId = new Guid(option.Value)
+                };
+                args.GalleryCategories.Add(model);
+            }
 
             if (await _galleryService.UpdateGallery(args) != null)
             {
-                foreach (var option in args.AvailableCategories.Where(a => a.Selected == true))
-                {
-                    args.Categories.Add(await _categoryService.GetGalleryCategoryById(new Guid(option.Value)));
-                }
                 _navigationManager.NavigateTo("/galleries");
             }
             Message = "Error updating gallery";

@@ -29,8 +29,8 @@ else
                 <th>Name</th>
                 <th>Description</th>
                 <th>Updated</th>
-                <th>Num Types</th>
-                <th>Num Categories</th>
+                <th>Type</th>
+                <th>Categories</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -41,7 +41,7 @@ else
                     <td>@item.Name</td>
                     <td>@item.Description</td>
                     <td>@item.DateUpdated</td>
-                    <td>@item.Types.Count</td>
+                    <td>@item.GalleryType.Name</td>
                     <td>@item.Categories.Count</td>
                     <td>
                         <button @onclick=@(() => Details(item.Id)) class="btn btn-info">Details</button>

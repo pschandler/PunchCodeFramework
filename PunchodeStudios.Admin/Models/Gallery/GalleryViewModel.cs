@@ -14,9 +14,11 @@ namespace PunchcodeStudios.Admin.Models.Gallery
         public string Description { get; set; } = string.Empty;
         public DateTime? DateCreated { get; set; }
         public DateTime? DateUpdated { get; set;}
+        public Guid GalleryTypeId { get; set; }
 
-        public List<GalleryCategoryViewModel> Categories { get; set; } = new List<GalleryCategoryViewModel>();
-        public List<GalleryTypeViewModel> Types { get; set; } = new List<GalleryTypeViewModel>();
-        public List<SelectOption> AvailableCategories { get; set; } = new List<SelectOption>();
+        public List<CategoryGalleryViewModel> GalleryCategories { get; set; } = new();
+        public List<CategoryViewModel> Categories { get; set; } = new();
+        public GalleryTypeViewModel GalleryType { get; set; } = new();
+        public List<SelectOption> AvailableCategories { get; set; } = new();
     }
 }

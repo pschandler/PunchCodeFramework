@@ -24,7 +24,7 @@ namespace PunchcodeStudios.Admin.Services
         public async Task<GalleryViewModel> GetGalleryById(Guid id)
         {
             await AddBearerToken();
-            var gallery = await _client.IdAsync(id);
+            var gallery = await _client.Id2Async(id);
             return _mapper.Map<GalleryViewModel>(gallery);
         }
 
@@ -61,7 +61,15 @@ namespace PunchcodeStudios.Admin.Services
             {
                 await AddBearerToken();
                 var updateGalleryCommand = _mapper.Map<UpdateGalleryCommand>(model);
-                await _client.GalleryPUTAsync(updateGalleryCommand);
+                
+                //await _client.GalleryPUTAsync(updateGalleryCommand);
+
+                foreach(var item in model.GalleryCategories)
+                {
+                    var addCategoryToGalleryCommand = _mapper.Map<AddGalleryToCategoryCommand>(item);
+                    await _client.GalleryCategoryAsync(addCategoryToGalleryCommand);
+                }
+                
                 return new ApiResponse<Guid>()
                 {
                     Success = true,

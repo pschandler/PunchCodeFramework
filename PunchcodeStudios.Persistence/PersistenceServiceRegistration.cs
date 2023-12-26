@@ -25,7 +25,8 @@ namespace PunchcodeStudios.Persistence
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IGalleryRepository, GalleryRepository>();
             services.AddScoped<IGalleryTypeRepository, GalleryTypeRepository>();
-            services.AddScoped<IGalleryCategoryRepository, GalleryCategoryRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryGalleryRepository, CategoryGalleryRepository>();
 
             return services;
         }

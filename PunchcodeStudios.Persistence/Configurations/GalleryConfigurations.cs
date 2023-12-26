@@ -14,6 +14,8 @@ namespace PunchcodeStudios.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Gallery> builder)
         {
+            builder.HasIndex(q => q.Name).IsUnique();
+            builder.HasMany(q => q.CategoryGalleries);
             builder.Property(q => q.Name).IsRequired().HasMaxLength(50);
             builder.Property(q => q.Description).IsRequired().HasMaxLength(100);
         }

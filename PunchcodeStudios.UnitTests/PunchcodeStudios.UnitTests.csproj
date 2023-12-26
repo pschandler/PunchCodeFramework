@@ -32,8 +32,8 @@
 
   <ItemGroup>
     <Folder Include="Features\Galleries\Commands\" />
-    <Folder Include="Features\GalleryCategories\" />
-    <Folder Include="Features\GalleryTypes\" />
+    <Folder Include="Features\Categories\" />
+    <Folder Include="Features\Types\" />
   </ItemGroup>
 
 </Project>

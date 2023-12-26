@@ -1,0 +1,16 @@
+﻿using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PunchcodeStudios.Application.Features.CategoryGallery.Commands.AddCategoryGallery
+{
+    public class AddGalleryToCategoryCommand : IRequest<bool>
+    {
+        public Guid GalleriesId { get; set; }
+        public Guid CategoriesId { get; set; }
+    }
+}

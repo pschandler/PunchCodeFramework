@@ -36,7 +36,7 @@ namespace PunchcodeStudios.Persistence.Repositories
         {
             var gallery = await _context.Galleries
                 .Include(q => q.Categories)
-                .Include(q => q.Types)
+                .Include(q => q.Type)
                 .FirstOrDefaultAsync(q => q.Name == name && q.DateDeleted == null);
             return gallery;
         }
@@ -55,7 +55,7 @@ namespace PunchcodeStudios.Persistence.Repositories
         //public async Task<IReadOnlyList<Gallery>> GetGalleryByCategory(Guid categoryId, bool includeDeleted = false)
         //{
         //    var galleries = await _context.Galleries
-        //        .Where(q => q.GalleryCategoryId == categoryId)
+        //        .Where(q => q.CategoryId == categoryId)
         //        .Include(q => q.Category)
         //        .Include(q => q.Type)
         //        .ToListAsync();
@@ -112,7 +112,7 @@ namespace PunchcodeStudios.Persistence.Repositories
         //    var galleries = await _context.Galleries
         //        .Include(q => q.Category)
         //        .Include(q => q.Type)
-        //        .Where(q => q.Category != null && q.GalleryCategoryId == categoryId)
+        //        .Where(q => q.Category != null && q.CategoryId == categoryId)
         //        .ToListAsync();
         //    return galleries;
         //}

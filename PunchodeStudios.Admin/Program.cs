@@ -24,8 +24,9 @@ builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStatePr
 
 builder.Services.AddScoped<IGalleryService, GalleryService>();
 builder.Services.AddScoped<IGalleryTypeService, GalleryTypeService>();
-builder.Services.AddScoped<IGalleryCategoryService, GalleryCategoryService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<ICategoryGalleryService, CategoryGalleryService>();
 
 
 

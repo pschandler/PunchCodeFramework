@@ -19,7 +19,8 @@ namespace PunchcodeStudios.Persistence.DatabaseContext
 
         public DbSet<Gallery> Galleries { get; set; }
         public DbSet<GalleryType> GalleryTypes { get; set; }
-        public DbSet<GalleryCategory> GalleryCategories { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryGallery> CategoryGalleries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

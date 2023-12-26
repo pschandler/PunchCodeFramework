@@ -7,14 +7,14 @@ namespace PunchcodeStudios.Application.Features.Gallery
     {
         public GalleryDTO()
         {
-            GalleryCategories = new List<Domain.GalleryCategory>();
-            GalleryTypes = new List<Domain.GalleryType>();
+            Categories = new List<Domain.Category>();
         }
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public IReadOnlyList<Domain.GalleryCategory> GalleryCategories { get; set; }
-        public IReadOnlyList<Domain.GalleryType> GalleryTypes { get; set; }
+        public IReadOnlyList<Domain.Category> Categories { get; set; }
         public DateTime DateCreated { get; set; }
+        public DateTime? DateUpdated { get; set; }
+        public Guid GalleryTypeId { get; set; }
     }
 }

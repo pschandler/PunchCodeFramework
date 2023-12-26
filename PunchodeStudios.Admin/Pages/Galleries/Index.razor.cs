@@ -35,11 +35,6 @@ namespace PunchcodeStudios.Admin.Pages.Galleries
             NavigationManager.NavigateTo($"/gallery/edit/{id}");
         }
 
-        public void Submit()
-        {
-            _toastService.ShowWarning("LOGIN");
-        }
-
         protected async void Delete(Guid id)
         {
             var response = await _service.DeleteGallery(id);

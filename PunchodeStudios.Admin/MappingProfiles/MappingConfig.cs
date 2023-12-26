@@ -13,6 +13,10 @@ namespace PunchcodeStudios.Admin.MappingProfiles
                  dest => dest.DateCreated,
                  options => options.MapFrom(source => source.DateCreated.DateTime)
                 )
+                .ForMember(
+                 dest => dest.DateUpdated,
+                 options => options.MapFrom(source => source.DateUpdated.Value.DateTime)
+                )
                 .ReverseMap();
             CreateMap<CreateGalleryCommand, GalleryViewModel>()
                 .ReverseMap();
@@ -23,7 +27,7 @@ namespace PunchcodeStudios.Admin.MappingProfiles
                 )
                 .ReverseMap();
 
-            CreateMap<GalleryCategoryDTO, GalleryCategoryViewModel>()
+            CreateMap<CategoryDTO, CategoryViewModel>()
                 .ForMember(
                  dest => dest.DateCreated,
                  options => options.MapFrom(source => source.DateCreated.DateTime)
@@ -33,13 +37,18 @@ namespace PunchcodeStudios.Admin.MappingProfiles
                  options => options.MapFrom(source => source.DateUpdated.Value.DateTime)
                 )
                 .ReverseMap();
-            CreateMap<CreateGalleryCategoryCommand, GalleryCategoryViewModel>()
+            CreateMap<CreateCategoryCommand, CategoryViewModel>()
                 .ReverseMap();
-            CreateMap<UpdateGalleryCategoryCommand, GalleryCategoryViewModel>()
+            CreateMap<UpdateCategoryCommand, CategoryViewModel>()
                .ForMember(
                  dest => dest.DateCreated,
                  options => options.MapFrom(source => source.DateCreated.DateTime)
                 )
+                .ReverseMap();
+
+            CreateMap<CategoryGalleryDTO, CategoryGalleryViewModel>()
+                .ReverseMap();
+            CreateMap<AddGalleryToCategoryCommand, CategoryGalleryViewModel>()
                 .ReverseMap();
         }
     }
